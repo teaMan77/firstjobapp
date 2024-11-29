@@ -1,5 +1,7 @@
 package com.jobs.firstjobapp.Job;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jobs.firstjobapp.Company.Company;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +16,9 @@ public class Job {
     private String minSalary;
     private String maxSalary;
     private String location;
+
+    @ManyToOne
+    private Company company;
 
     public Job() {
     } //default no argument constructor is needed for jpa to retrieve data from the database and map.
@@ -73,5 +78,13 @@ public class Job {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

@@ -1,12 +1,11 @@
 package com.jobs.firstjobapp.Job.Impl;
 
+import com.jobs.firstjobapp.Company.CompanyRepository;
 import com.jobs.firstjobapp.Job.Job;
 import com.jobs.firstjobapp.Job.JobRepository;
 import com.jobs.firstjobapp.Job.JobService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +16,11 @@ public class JobServiceImpl implements JobService {
 
     JobRepository jobRepository;
 
-    public JobServiceImpl(JobRepository jobRepository) {
+    CompanyRepository companyRepository;
+
+    public JobServiceImpl(JobRepository jobRepository, CompanyRepository companyRepository) {
         this.jobRepository = jobRepository;
+        this.companyRepository = companyRepository;
     }
 
     @Override
@@ -27,9 +29,12 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public String addJob(Job job) {
-        jobRepository.save(job);
-        return "Job added successfully!";
+    public boolean addJob(Job job) {
+        if (companyRepository.existsById(job.getCompany().getId())) {
+            jobRepository.save(job);
+            return true;
+        }
+        return false;
     }
 
     @Override

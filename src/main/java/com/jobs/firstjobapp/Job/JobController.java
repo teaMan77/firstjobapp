@@ -29,7 +29,11 @@ public class JobController {
      */
     @PostMapping
     public ResponseEntity<String> addJob(@RequestBody Job job) {
-        return new ResponseEntity<>(jobService.addJob(job), HttpStatus.CREATED);
+        boolean isCreated = jobService.addJob(job);
+
+        if (isCreated)
+            return new ResponseEntity<>("Job created successfully!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Company does not exist!", HttpStatus.NOT_FOUND);
     }
 
     /*

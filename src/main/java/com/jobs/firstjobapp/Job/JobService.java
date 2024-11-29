@@ -6,7 +6,7 @@ public interface JobService {
 
     public List<Job> findAll();
 
-    public String addJob(Job job);
+    public boolean addJob(Job job);
 
     public Job findJobById(int id);
 
