@@ -1,4 +1,4 @@
-package com.jobs.firstjobapp.Job.Impl;
+package com.jobs.firstjobapp.Job.impl;
 
 import com.jobs.firstjobapp.Company.CompanyRepository;
 import com.jobs.firstjobapp.Job.Job;
