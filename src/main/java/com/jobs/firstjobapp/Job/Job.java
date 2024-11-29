@@ -1,13 +1,22 @@
 package com.jobs.firstjobapp.Job;
 
+import jakarta.persistence.*;
+
+@Entity
+//@Table(name = "job_table")
 public class Job {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
     private String location;
+
+    public Job() {
+    } //default no argument constructor is needed for jpa to retrieve data from the database and map.
 
     public Job(int id, String title, String description, String minSalary, String maxSalary, String location) {
         this.id = id;

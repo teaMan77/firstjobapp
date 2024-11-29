@@ -16,16 +16,25 @@ public class JobController {
         this.jobService = jobService;
     }
 
+    /*
+    * get all jobs
+    * */
     @GetMapping
     public ResponseEntity<List<Job>> findAll() {
         return ResponseEntity.ok(jobService.findAll());
     }
 
+    /*
+    create a job
+     */
     @PostMapping
     public ResponseEntity<String> addJob(@RequestBody Job job) {
         return new ResponseEntity<>(jobService.addJob(job), HttpStatus.CREATED);
     }
 
+    /*
+    get job by specific id
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Job> findJobById(@PathVariable int id) {
         Job job = jobService.findJobById(id);
@@ -35,6 +44,9 @@ public class JobController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /*
+    delete a job by specific id
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteJobById(@PathVariable int id) {
         boolean isDeleted = jobService.deleteJobById(id);
@@ -44,6 +56,9 @@ public class JobController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /*
+    update a job by specific id
+     */
     @PutMapping("/{id}")
 //    @RequestMapping(value = "/jobs/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateJobById(@PathVariable int id, @RequestBody Job updatedJob) {
